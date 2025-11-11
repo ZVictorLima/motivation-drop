@@ -87,19 +87,26 @@
       "Images/Be Leaf.png",
       "Images/Donut.png",
       "Images/Egg.png",
-      "Images/Mint.png",
-      "Images/Shrim.webp",
       "Images/Hang.png",
-      "Images/Root.png",
-      "Images/Up Beat.png",
       "Images/I bee Leaf.png",
-      "Images/Positive.png"
+      "Images/Mint.png",
+      "Images/Positive.png",
+      "Images/Root.png",
+      "Images/Shrim.webp",
+      "Images/Spresso.png",
+      "Images/Tea.png",
+      "Images/Up Beat.png",
+      "Images/Whale.png"
     ];
 
     function showRandomImage() {
       const img = document.getElementById("motivation-img");
       const random = Math.floor(Math.random() * images.length);
-      img.src = images[random] + "?v=" + Date.now(); // tiny cache-buster
+      const selected = images[random];
+      // encodeURI so filenames with spaces load correctly, add cache-buster
+      img.src = encodeURI(selected) + "?v=" + Date.now();
+      // set a nicer alt without folder or extension
+      img.alt = selected.replace(/^Images\//, "").replace(/\.[^/.]+$/, "");
     }
 
     // Show one on load
